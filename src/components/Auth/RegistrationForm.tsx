@@ -16,6 +16,7 @@ export default function RegisterForm() {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Registering with:', { username, email, password }); // Log the values
     try {
       await register(username, email, password);
       router.push('/chat');

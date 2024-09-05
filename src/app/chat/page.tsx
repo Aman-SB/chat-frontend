@@ -1,17 +1,15 @@
 "use client";
-
-import { useState } from "react";
-import Sidebar from "../../components/Sidebar";
-import ChatArea from "../../components/ChatArea";
-import useAuthStore from "@/stores/authStores";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import Sidebar from '../../components/Sidebar';
+import ChatArea from '../../components/ChatArea';
+import LogoutButton from '@/components/Auth/LogoutButton'; // Import the new component
+import useAuthStore from '@/stores/authStores';
 
 export default function ChatPage() {
     const [selectedContact, setSelectedContact] = useState<any>(null);
-    const { user, logout } = useAuthStore((state) => ({
+    const { user } = useAuthStore((state) => ({
         user: state.user,
-        logout: state.logout
-      }));
+    }));
 
     return (
         <div className="flex h-screen">
@@ -21,13 +19,7 @@ export default function ChatPage() {
                     <h1 className="text-2xl font-bold">Chat App</h1>
                     <div>
                         <span className="mr-4">Welcome, {user?.username}</span>
-                        <Button
-                            onClick={logout}
-                            className=" text-white px-4 py-2 rounded"
-                            variant={"destructive"}
-                        >
-                            Logout
-                        </Button>
+                        <LogoutButton />
                     </div>
                 </header>
                 <ChatArea selectedContact={selectedContact} />
